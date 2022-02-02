@@ -1,6 +1,6 @@
 <?php
 
-namespace common\components;
+namespace kksshp\ckeditor;
 
 use yii\helpers\Html;
 use yii\helpers\Json;
@@ -8,48 +8,36 @@ use yii\web\JsExpression;
 use yii\widgets\InputWidget;
 
 /**
- * CKEditor renders a CKEditor5 js plugin for classic editing.
- * @author Krishna Sharma <krishna.sharma@girnarsoft.com>
- * @package common\components\ckeditor5
+ * CKEditor renders a CKEditor5 js plugin for editing.
+ * @author Krishna Sharma <kksshp@gmail.com>
+ * @package kksshp\yii2-ckeditor
  */
+
 class CKEditor extends InputWidget
 {
 
     public $clientOptions = [
-        'language'=> 'en',
+        'language' => 'en',
         'toolbar' => [
- 
-               'items' => [
-            'heading',
-            '|',
-            'bold',
-            'italic',
-            'link',
-            'bulletedList',
-            'numberedList',
-            '|',
-            'indent',
-            'outdent',
-            '|',
-            'imageUpload',
-            'blockQuote',
-            'insertTable',
-            'mediaEmbed',
-            'undo',
-            'redo',
-        //    'exportPdf',
-         //   'exportWord',
-            'fontSize',
-            'fontFamily',
-            'fontColor',
-            'fontBackgroundColor',
-            'highlight',
-            'imageInsert',
-            'alignment'
 
-           ],
-       
-            ]
+            'items' => [
+                'code','heading','|',
+                'bold', 'italic', 'underline', '|',
+                'link', 'bulletedList', 'numberedList', '|',
+                'indent', 'outdent', '|',
+                'imageUpload', 'blockQuote', 'insertTable', 'mediaEmbed',
+                'undo', 'redo',
+                'fontSize',
+                'fontFamily',
+                'fontColor',
+                'fontBackgroundColor',
+                'highlight',
+                'imageInsert',
+                'alignment'
+
+            ],
+
+        ]
 
     ];
     public $toolbar;
@@ -60,7 +48,7 @@ class CKEditor extends InputWidget
     public function init()
     {
         parent::init();
-       // $this->initOptions();
+        // $this->initOptions();
     }
 
     /**
@@ -75,7 +63,6 @@ class CKEditor extends InputWidget
         }
         $this->registerAssets($this->getView());
         $this->registerPlugin();
-
     }
 
     /**
@@ -92,7 +79,7 @@ class CKEditor extends InputWidget
         $clientOptions = Json::encode($this->clientOptions);
 
         $js = new JsExpression(
-             "ClassicEditor.create( document.querySelector( '#{$this->options['id']}' ), {$clientOptions} ).then( editor=>{console.log( editor );
+            "ClassicEditor.create( document.querySelector( '#{$this->options['id']}' ), {$clientOptions} ).then( editor=>{console.log( editor );
       
                 CKEditor.set('{$this->options['id']}',editor);
            
@@ -100,14 +87,14 @@ class CKEditor extends InputWidget
 
         );
         $replacejs = new JsExpression(
-            
+
             "CKEditor.replace=(element)=>{
                 ClassicEditor.create( document.querySelector( '#'+element ), {$clientOptions} ).then( editor=>{
                CKEditor.set(element,editor);
            
            }).catch( error => {console.error( error );} );}"
 
-       );
+        );
         $this->view->registerJs($js);
         $this->view->registerJs($replacejs);
     }

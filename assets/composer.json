@@ -1,0 +1,27 @@
+{
+    "name": "kksshp/yii2-ckeditor",
+    "description": "CKEditor for Yii2",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"," ckeditor"," ckeditor5"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Krishna Sharma",
+            "email": "kksshp@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+        
+    },
+    "extra": {
+        "npm": {
+            "ckeditor/ckeditor": "^5.0"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "kksshp\\ckeditor\\": ""
+        }
+    }
+}

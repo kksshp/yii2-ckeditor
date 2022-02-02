@@ -79,14 +79,11 @@ class CKEditor extends InputWidget
         $clientOptions = Json::encode($this->clientOptions);
 
         $js = new JsExpression(
-            "ClassicEditor.create( document.querySelector( '#{$this->options['id']}' ), {$clientOptions} ).then( editor=>{console.log( editor );
-      
-                CKEditor.set('{$this->options['id']}',editor);
-           
-            }).catch( error => {console.error( error );} );"
+            "ClassicEditor.create( document.querySelector( '#{$this->options['id']}' ), {$clientOptions} )
+            .catch( error => {console.error( error );} );"
 
         );
-        $replacejs = new JsExpression(
+        /*$replacejs = new JsExpression(
 
             "CKEditor.replace=(element)=>{
                 ClassicEditor.create( document.querySelector( '#'+element ), {$clientOptions} ).then( editor=>{
@@ -94,7 +91,7 @@ class CKEditor extends InputWidget
            
            }).catch( error => {console.error( error );} );}"
 
-        );
+        );*/
         $this->view->registerJs($js);
         $this->view->registerJs($replacejs);
     }

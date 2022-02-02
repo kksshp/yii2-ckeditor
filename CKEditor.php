@@ -93,7 +93,7 @@ class CKEditor extends InputWidget
 
         );*/
         $this->view->registerJs($js);
-        $this->view->registerJs($replacejs);
+        //$this->view->registerJs($replacejs);
     }
 
     protected function registerAssets($view)

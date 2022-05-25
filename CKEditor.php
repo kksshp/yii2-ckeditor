@@ -80,6 +80,16 @@ class CKEditor extends InputWidget
 
         $js = new JsExpression(
             "ClassicEditor.create( document.querySelector( '#{$this->options['id']}' ), {$clientOptions} )
+            .then(editor => {
+                let elementId = '#{$this->options['id']}';
+                editor.editing.view.document.on('change:isFocused', ( evt, data, isFocused ) => {
+                    if (!isFocused) // blur
+                    {
+                        $(elementId).val(editor.getData());
+                        $(elementId).trigger('blur');
+                    }
+                });
+            })
             .catch( error => {console.error( error );} );"
 
         );

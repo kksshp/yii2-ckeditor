@@ -21,19 +21,11 @@ class CKEditor extends InputWidget
         'toolbar' => [
 
             'items' => [
-                'code','heading','|',
-                'bold', 'italic', 'underline', '|',
+                'undo', 'redo', 'heading', '|', 'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript',
                 'link', 'bulletedList', 'numberedList', '|',
-                'indent', 'outdent', '|',
-                'imageUpload', 'blockQuote', 'insertTable', 'mediaEmbed',
-                'undo', 'redo',
-                'fontSize',
-                'fontFamily',
-                'fontColor',
-                'fontBackgroundColor',
-                'highlight',
-                'imageInsert',
-                'alignment'
+                'indent', 'outdent', '|', 'imageUpload', 'blockQuote', 'insertTable', '|',
+                'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
+                'imageInsert', 'mediaEmbed', 'alignment', 'ckfinder', 'SourceEditing'
 
             ],
 
